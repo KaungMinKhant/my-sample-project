@@ -90,4 +90,9 @@
 		margin-left: 5px;
 		margin-top: -10px;
 	}
+
+	body{
+		
+		background-color: white;
+	}
 </style>
