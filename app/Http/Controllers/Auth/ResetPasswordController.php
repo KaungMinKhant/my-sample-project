@@ -20,6 +20,7 @@ class ResetPasswordController extends Controller
 
     use ResetsPasswords;
 
+
     /**
      * Where to redirect users after resetting their password.
      *
@@ -34,6 +35,7 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
+        /*dd(env('MAIL_HOST'));*/
         $this->middleware('guest');
     }
 }

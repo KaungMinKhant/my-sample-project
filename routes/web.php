@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// home page route
+Route::get('/', 'PagesController@index');
 
 // Test Route
 Route::get('test', 'TestController@index');
@@ -23,3 +22,4 @@ Route::get('test', 'TestController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
