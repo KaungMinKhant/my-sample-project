@@ -1,14 +1,18 @@
 @extends('layouts.master')
 
-@section('title')
+@section('content')
+
 
 <h1>Test Page</h1>
 
-@if(count($names) > 0)
 
-@foreach($names as $name)
 
-{{ $name }} <br>
+
+@if(count($beatles) > 0)
+
+@foreach($beatles as $beatle)
+
+{{ $beatle }} <br>
 
 @endforeach
 
@@ -16,6 +20,7 @@
 
 <h1> Sorry, nothing to show...</h1>
 
-@endif
+@endif 
 
-@endsection
+@endsection 
+

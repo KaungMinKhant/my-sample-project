@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 class TestController extends Controller
 {
     /**
@@ -14,8 +13,8 @@ class TestController extends Controller
     public function index()
     {
         //returning index view of test
-        $names = ['Mya Mya', 'Mg Ba', 'Awesome', 'Figo'];
-        return view('test.index', compact('names'));
+        $beatles = ['John', 'Paul', 'George', 'Ringo'];
+        return view('test.index', compact('beatles', 'user_name'));
     }
 
     /**

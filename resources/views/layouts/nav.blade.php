@@ -34,7 +34,7 @@
         <form id="logout-form" action="/logout" method="POST" style="display: none;">
           {{ csrf_field() }}
         </form>
-        <li class="nav-item image-control"><img class="circ" src="{{ Gravatar::get(Auth::user()->email)  }}"></li>
+        <li class="nav-item image-control"><img class="circ" src="{{ \Gravatar::get(\Auth::user()->email)  }}"></li>
       </div>
     </li>
     @else

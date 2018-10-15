@@ -16,6 +16,10 @@ Route::get('/', 'PagesController@index')->middleware('verified');
 
 // Test Route
 Route::get('test', 'TestController@index')->middleware('verified');
+Route::get('logout', function(){
+	auth()->logout();
+	return view('auth.login');
+});
 
 
 

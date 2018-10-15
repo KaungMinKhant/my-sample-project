@@ -17,15 +17,16 @@
   @include('layouts.nav')
 
 
-<div class="container theme-showcase" role="main">
+  <div class="container theme-showcase" role="main">
 
-  @yield('content')
+    @yield('content')
 
-  @include('layouts.bottom')
+    @include('layouts.bottom')
 
   </div> <!-- /container -->
 
   @include('layouts.scripts')
+
 
   @yield('scripts')
 
