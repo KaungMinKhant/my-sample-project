@@ -49,4 +49,6 @@ Sorry, no Widgets
 
 @endif
 
+{{ $widgets->links() }}
+
 @endsection

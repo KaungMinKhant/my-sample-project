@@ -24,6 +24,7 @@
    <thead>
        <th>Id</th>
        <th>Name</th>
+       <th>Email</th>
        <th>Date Created</th>
    </thead>
 
@@ -32,9 +33,10 @@
     @foreach($users as $user)
 
     <tr>
-        <td>{{ $widget->id }}</td>
+        <td>{{ $user->id }}</td>
         <td><a href="/user/{{ $user->id }}">{{ $user->name }}</a></td>
-        <td>{{ $widget->created_at }}</td>
+        <td><a href="/user/{{ $user->email }}">{{ $user->email }}</a></td>
+        <td>{{ $user->created_at }}</td>
     </tr>
 
     @endforeach

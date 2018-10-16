@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Widget;
+use App\User;
 use Redirect;
 
-class WidgetController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class WidgetController extends Controller
      */
     public function index()
     {
-        $widgets = Widget::paginate(10);
-        return view('widget.index', compact('widgets'));
+        $users = User::all();
+        return view('auth.index', compact('users'));
     }
 
     /**
@@ -26,7 +26,7 @@ class WidgetController extends Controller
      */
     public function create()
     {
-        return view('widget.create');
+        //
     }
 
     /**
@@ -37,19 +37,7 @@ class WidgetController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-
-            'name' => 'required|unique:widgets|string|max:30',
-
-            ]);
-
-        $widget = Widget::create(['name' => $request->name]);
-
-        $widget->save();
-
-
-        return Redirect::route('widget.index');
-
+        //
     }
 
     /**

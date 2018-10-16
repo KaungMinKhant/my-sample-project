@@ -2,55 +2,63 @@
 
 @section('title')
 
-    <title>Create a Widget</title>
+<title>Create a Widget</title>
 
 @endsection
 
 @section('content')
 
-    <ol class='breadcrumb'>
-        <li><a href='/'>Home</a></li>
-        <li><a href='/widget'>Widgets</a></li>
-        <li class='active'>Create</li>
-    </ol>
+<ol class='breadcrumb'>
+    <li><a href='/'>Home</a></li>
+    <li><a href='/widget'>Widgets</a></li>
+    <li class='active'>Create</li>
+</ol>
 
-    <h2>Create a New Widget</h2>
+<h2>Create a New Widget</h2>
 
-    <hr/>
+<hr/>
 
-    <form class="form" role="form" method="POST" action="{{ url('/widget') }}">
+<form class="form" role="form" method="POST" action="{{ url('/widget') }}">
 
     {{ csrf_field() }}
 
     <!-- widget_name Form Input -->
 
-        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
-            <label class="control-label">Widget Name</label>
+        <label class="control-label">Widget Name</label>
 
-            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
 
-            @if ($errors->has('name'))
+        @if ($errors->has('name'))
 
-                <span class="help-block">
-                <strong>{{ $errors->first('name') }}</strong>
-                </span>
+        <span class="help-block">
+            <strong>{{ $errors->first('name') }}</strong>
+        </span>
 
-            @endif
+        @endif
 
-        </div>
+    </div>
 
 
-        <div class="form-group">
+    <div class="form-group">
 
-            <button type="submit" class="btn btn-primary btn-lg">
+        <button type="submit" class="btn btn-primary btn-lg button-suceess-message">
 
-                Create
+            Create
 
-            </button>
+        </button>
 
-        </div>
+    </div>
 
-    </form>
+</form>
 
+@endsection
+
+@section('scripts')
+<script>
+ $('.button-suceess-message').click(function(){
+    swal('Your Widget', 'has been added', 'success');
+ });
+</script>
 @endsection
