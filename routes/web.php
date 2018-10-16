@@ -13,6 +13,9 @@
 // Authenication Route
 Auth::routes(['verify' => true]);
 
+// Auth Index Route
+Route::get('user', 'Auth\RegisterController@index')->middleware('verified');
+
 // Home Page Route
 Route::get('/', 'PagesController@index')->middleware('verified');
 

@@ -23,6 +23,11 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+
+    public function index(){
+        $users = \Auth::all();
+        return view('auth.index', compact('users'));
+    }
     /**
      * Where to redirect users after registration.
      *
