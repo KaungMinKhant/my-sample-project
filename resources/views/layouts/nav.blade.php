@@ -2,7 +2,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">My Project</a>
+  <a class="navbar-brand" href="#">EduSmart</a>
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -18,10 +18,13 @@
           Content
         </button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="#">Widgets</a>
+          <a href="/widget">Courses</a>
         </div>
       </li>
-      @if (Auth::check())
+      
+  </ul>
+  <ul class="navbar-nav ">
+  @if (Auth::check())
       <li class="dropdown">
         <button href="#" onclick="myFunction2()" class="nav-link dropdown-toggle dropbtn2 bg-dark">
           {{ Auth::user()->name }}
@@ -45,10 +48,6 @@
       <a class="nav-link" href="/register">Register</a>
     </li>
     @endif
-  </ul>
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
+    </ul>
 </div>
 </nav> 

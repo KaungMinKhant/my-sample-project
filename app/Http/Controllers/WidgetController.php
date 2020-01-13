@@ -7,8 +7,10 @@ use App\Widget;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
 
+ 
 class WidgetController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -41,12 +43,13 @@ class WidgetController extends Controller
         $this->validate($request, [
 
             'name' => 'required|unique:widgets|string|max:30',
+           
 
-            ]);
+        ]);
 
         $slug = str_slug($request->name, "-");
 
-        $widget = Widget::create(['name' => $request->name,
+        $widget = Widget::create(['name' => $request->name, 
             'slug' => $slug,
             'user_id' => Auth::id()]);
 
@@ -63,9 +66,18 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    
+    public function show(Widget $widget, $slug = '')
     {
-        //
+
+        if ($widget->slug !== $slug) {
+
+            return Redirect::route('widget.show', ['id' => $widget->id,
+             'slug' => $widget->slug],
+             301);
+        }
+
+        return view('widget.show', compact('widget'));
     }
 
     /**
@@ -74,11 +86,10 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Widget $widget)
     {
-        //
-    }
-
+     return view('widget.edit', compact('widget'));
+ }
     /**
      * Update the specified resource in storage.
      *
@@ -86,9 +97,23 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    
+    public function update(Request $request, Widget $widget)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:40|unique:widgets,name,' .$widget->id
+
+        ]);
+
+        $slug = str_slug($request->name, "-");
+
+        $widget->update(['name' => $request->name,
+         'slug' => $slug,
+         'user_id' => Auth::id()]);
+
+        //flash()->success('Congrats!', 'You updated a widget');
+        //function_alert("Your Widget", "has been edited", "success");
+         return view('widget.show', compact('widget'));
     }
 
     /**
@@ -99,7 +124,11 @@ class WidgetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Widget::destroy($id);
+
+        //flash()->overlay('Attention!', 'You deleted a widget', 'error');
+        //function_alert("Your Widget", "has been deleted", "error");
+        return Redirect::route('widget.index');
     }
 
     public function __construct()

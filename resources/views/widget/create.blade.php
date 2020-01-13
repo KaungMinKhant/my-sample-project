@@ -26,9 +26,13 @@
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
-        <label class="control-label">Widget Name</label>
+        <label class="control-label">Course Name</label>
 
         <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+
+        <!-- <label class="control-label">Course Details</label>
+        
+        <input type="text" class="form-control" name="name" value="{{ old('course_details') }}"> -->
 
         @if ($errors->has('name'))
 

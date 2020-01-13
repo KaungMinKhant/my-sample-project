@@ -12,9 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    	Widget::unguard();
-    	Widget::truncate();
-    	factory(Widget::class)->create();
-    	Widget::reguard();
+        Widget::unguard();
+        Widget::truncate();
+        factory(Widget::class)->create();
+        Widget::reguard();
     }
 }

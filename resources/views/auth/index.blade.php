@@ -51,4 +51,5 @@ Sorry, no Widgets
 
 @endif
 
+{{$users -> links()}}
 @endsection

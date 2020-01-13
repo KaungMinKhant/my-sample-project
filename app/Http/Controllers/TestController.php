@@ -12,9 +12,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        //returning index view of test
-        $beatles = ['John', 'Paul', 'George', 'Ringo'];
-        return view('test.index', compact('beatles', 'user_name'));
+        $result = Widget::findOrFail(200);
     }
 
     /**
