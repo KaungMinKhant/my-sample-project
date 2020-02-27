@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Exception;
 
 use Illuminate\Http\Request;
 class TestController extends Controller
@@ -12,7 +13,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $result = Widget::findOrFail(200);
+        throw new EmailNotProvidedException('facebook');
     }
 
     /**

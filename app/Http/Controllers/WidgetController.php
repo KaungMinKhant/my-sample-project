@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 use App\Widget;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
+use App\Http\AuthTraits\OwnsRecord;
+use App\Exceptions\UnauthorizedException;
 
- 
+function function_alert($msg) {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
 class WidgetController extends Controller
 {
-    
+    use OwnsRecord;
+
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +49,7 @@ class WidgetController extends Controller
         $this->validate($request, [
 
             'name' => 'required|unique:widgets|string|max:30',
-           
+
 
         ]);
 
@@ -73,8 +79,8 @@ class WidgetController extends Controller
         if ($widget->slug !== $slug) {
 
             return Redirect::route('widget.show', ['id' => $widget->id,
-             'slug' => $widget->slug],
-             301);
+               'slug' => $widget->slug],
+               301);
         }
 
         return view('widget.show', compact('widget'));
@@ -86,10 +92,18 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Widget $widget)
+    public function edit($id)
     {
-     return view('widget.edit', compact('widget'));
- }
+        $widget = Widget::findOrFail($id);
+
+        if ( ! $this->adminOrCurrentUserOwns($widget)){
+
+            throw new UnauthorizedException;
+
+        }
+
+        return view('widget.edit', compact('widget'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -98,22 +112,28 @@ class WidgetController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function update(Request $request, Widget $widget)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:40|unique:widgets,name,' .$widget->id
+            'name' => 'required|string|max:30|unique:widgets,name,' .$id
 
         ]);
+
+        $widget = Widget::findOrFail($id);
+
+        if ( ! $this->adminOrCurrentUserOwns($widget)){
+            throw new UnauthorizedException;
+        }
 
         $slug = str_slug($request->name, "-");
 
         $widget->update(['name' => $request->name,
-         'slug' => $slug,
-         'user_id' => Auth::id()]);
+           'slug' => $slug,
+           'user_id' => Auth::id()]);
 
-        //flash()->success('Congrats!', 'You updated a widget');
-        //function_alert("Your Widget", "has been edited", "success");
-         return view('widget.show', compact('widget'));
+        //alert()->success('Congrats!', 'You updated a widget');
+        function_alert("You updated a widget");
+        return view('widget.show', compact('widget'));
     }
 
     /**
@@ -124,6 +144,10 @@ class WidgetController extends Controller
      */
     public function destroy($id)
     {
+        $widget = Widget::findOrFail($id);
+        if( ! $this->adminOrCurrentUserOwns($widget)){
+            throw new UnauthorizedException;
+        }
         Widget::destroy($id);
 
         //flash()->overlay('Attention!', 'You deleted a widget', 'error');
