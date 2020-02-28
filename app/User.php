@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\AuthTraits\OwnsRecord;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,7 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = ['name',
     'email',
+    'is_subscribed',
     'is_admin',
+    'user_type_id',
     'status_id',
     'password'];
 
@@ -36,5 +39,15 @@ class User extends Authenticatable
     public function widgets()
     {
         return $this->hasMany('App\Widget');
+    }
+
+    public function isAdmin()
+    {
+        return Auth::user()->is_admin == 1;
+    }
+
+    public function isActiveStatus()
+    {
+        return Auth::user()->status_id == 10;
     }
 }

@@ -19,11 +19,19 @@ Route::get('user', 'UserController@index')->middleware('verified');
 // Home Page Route
 Route::get('/', 'PagesController@index')->middleware('verified');
 
+//Login Route
+Route::get('/admin', 'AdminController@index')->name('admin');
+
 // Logout Route
 Route::get('logout', function(){
 	auth()->logout();
 	return view('auth.login');
 });
+
+//Privacy
+Route::get('privacy', 'PagesController@privacy');
+//Terms of Service
+Route::get('terms-of-service', 'PagesController@terms');
 
 // Test Route
 Route::get('test', 'TestController@index')->middleware('verified');

@@ -79,8 +79,8 @@ class WidgetController extends Controller
         if ($widget->slug !== $slug) {
 
             return Redirect::route('widget.show', ['id' => $widget->id,
-               'slug' => $widget->slug],
-               301);
+             'slug' => $widget->slug],
+             301);
         }
 
         return view('widget.show', compact('widget'));
@@ -128,8 +128,8 @@ class WidgetController extends Controller
         $slug = str_slug($request->name, "-");
 
         $widget->update(['name' => $request->name,
-           'slug' => $slug,
-           'user_id' => Auth::id()]);
+         'slug' => $slug,
+         'user_id' => Auth::id()]);
 
         //alert()->success('Congrats!', 'You updated a widget');
         function_alert("You updated a widget");
@@ -157,6 +157,7 @@ class WidgetController extends Controller
 
     public function __construct()
     {
-        $this->middleware('verified');
+        $this->middleware('verified', ['except' => 'index'] );
+        //$this->middleware('admin', ['except' => ['index', 'show']] );
     }
 }

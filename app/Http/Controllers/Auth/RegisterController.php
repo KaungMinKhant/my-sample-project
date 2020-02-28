@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -29,7 +31,20 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/logout';
+
+     protected function redirectTo()
+    {
+
+        if (Auth::user()->isAdmin()){
+
+            return '/admin';
+        }
+        return '/logout';
+
+        //return '/admin';
+    }
+
+    //protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,10 +64,16 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+        $data['is_subscribed'] = empty($data['is_subscribed']) ? 0 : 1;
+        $data['terms'] = empty($data['terms']) ? 0 : 1;
+
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'is_subscribed' => 'boolean',
+            'password' => 'required|min:6|confirmed',
+            'terms' => 'accepted'
         ]);
     }
 
@@ -64,10 +85,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $data['is_subscribed'] = empty($data['is_subscribed']) ? 0 : 1;
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'is_subscribed' => $data['is_subscribed'],
+            'password' => bcrypt($data['password']),
         ]);
     }
 }
