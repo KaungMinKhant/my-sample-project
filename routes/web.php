@@ -30,6 +30,12 @@ Route::get('logout', function(){
 
 //Privacy
 Route::get('privacy', 'PagesController@privacy');
+
+//Socialite Implementation
+/*Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');*/
+Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/callback', 'SocialAuthFacebookController@callback');
 //Terms of Service
 Route::get('terms-of-service', 'PagesController@terms');
 
