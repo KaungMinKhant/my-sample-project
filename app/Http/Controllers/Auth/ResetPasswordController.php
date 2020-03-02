@@ -38,17 +38,14 @@ class ResetPasswordController extends Controller
     }
     return '/';
 }*/
-     protected function redirectTo()
-    {
+protected function redirectTo()
+{
 
-        if (Auth::user()->isAdmin()){
-
-            return '/admin';
-        }
-        return '/';
+    
+    return '/';
 
         //return '/admin';
-    }
+}
 
     /**
      * Create a new controller instance.
@@ -57,7 +54,9 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        /*dd(env('MAIL_HOST'));*/
-        $this->middleware('guest');
+        $this->middleware('guest', ['except'=> [
+            'showResetForm',
+            'reset'
+        ]]);
     }
 }

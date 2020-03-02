@@ -14,7 +14,7 @@
 Auth::routes(['verify' => true]);
 
 // Auth Index Route
-Route::get('user', 'UserController@index')->middleware('verified');
+
 
 // Home Page Route
 Route::get('/', 'PagesController@index')->middleware('verified');
@@ -28,6 +28,18 @@ Route::get('logout', function(){
 	return view('auth.login');
 });
 
+Route::resource('profile', 'ProfileController');
+Route::resource('user', 'UserController');
+
+Route::get('show-profile',
+'ProfileController@showProfileToUser')->name('show-profile');
+Route::get('determine-profile-route',
+'ProfileController@determineProfileRoute')
+->name('determine-profile-route');
+Route::resource('profile', 'ProfileController');
+Route::get('settings', 'SettingsController@edit');
+Route::post('settings', 'SettingsController@update')
+->name('user-update');
 //Privacy
 Route::get('privacy', 'PagesController@privacy');
 

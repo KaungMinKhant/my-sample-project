@@ -13,6 +13,18 @@
       <li class="nav-item">
         <a class="nav-link" href="#">About</a>
       </li>
+      @if (Auth::check() && Auth::user()->isAdmin())
+      <li class="nav-item">
+        <a class="nav-link" href="/user">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">Profiless</a>
+      </li>
+
+      
+
+      @endif
+
       <li class="dropdown">
         <button href="#" onclick="myFunction()" class="nav-link dropdown-toggle dropbtn bg-dark">
           Content
@@ -22,18 +34,24 @@
         </div>
       </li>
       
-  </ul>
-  <ul class="navbar-nav ">
-  @if (Auth::check())
+    </ul>
+    <ul class="navbar-nav ">
+      @if (Auth::check())
       <li class="dropdown">
         <button href="#" onclick="myFunction2()" class="nav-link dropdown-toggle dropbtn2 bg-dark">
           {{ Auth::user()->name }}
         </button>
         <div id="myDropdown2" class="dropdown-content2">
+          <a href="/determine-profile-route">Profile</a>
+          <a href="/settings">Settings</a>
+          @if(Auth::user()->isAdmin())
+          <a href="/admin">Admin</a>
+          @endif
           <a href="/logout"onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">
           Logout
         </a>
+
         <form id="logout-form" action="/logout" method="POST" style="display: none;">
           {{ csrf_field() }}
         </form>
@@ -48,6 +66,6 @@
       <a class="nav-link" href="/register">Register</a>
     </li>
     @endif
-    </ul>
+  </ul>
 </div>
 </nav> 
