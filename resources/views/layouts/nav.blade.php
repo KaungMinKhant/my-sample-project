@@ -13,24 +13,24 @@
       <li class="nav-item">
         <a class="nav-link" href="#">About</a>
       </li>
-      @if (Auth::check() && Auth::user()->isAdmin())
-      <li class="nav-item">
-        <a class="nav-link" href="/user">Users</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Profiless</a>
-      </li>
+      
+      
 
       
 
-      @endif
+      
 
       <li class="dropdown">
         <button href="#" onclick="myFunction()" class="nav-link dropdown-toggle dropbtn bg-dark">
           Content
         </button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="/widget">Courses</a>
+          <a href="/widget">Widgets</a>
+          @if (Auth::check() && Auth::user()->isAdmin())
+          <a href="/user">Users</a>
+          <a href="/profile">Profiles</a>
+          <a href="/marketing-image">Marketing Images</a>
+          @endif
         </div>
       </li>
       

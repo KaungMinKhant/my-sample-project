@@ -1,5 +1,7 @@
 <?php
-
+if(version_compare(PHP_VERSION, '7.2.0', '>=')) {
+    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+}
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +42,7 @@ Route::resource('profile', 'ProfileController');
 Route::get('settings', 'SettingsController@edit');
 Route::post('settings', 'SettingsController@update')
 ->name('user-update');
+Route::resource('marketing-image', 'MarketingImageController');
 //Privacy
 Route::get('privacy', 'PagesController@privacy');
 

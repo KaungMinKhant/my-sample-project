@@ -1,25 +1,26 @@
 @extends('layouts.master')
 
 @section('title')
-    <title>Sample Project</title>
+<title>Sample Project</title>
 @endsection
 
 @section('content')
 
-    <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-    </ol>
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+</ol>
+@include('pages.slider')
+<br><br>
+<!-- Main jumbotron for a primary marketing message or call to action -->
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
 
-    <div class="jumbotron">
+    <h1>Sample Project</h1>
 
-        <h1>Sample Project</h1>
+    <p>Use it as a starting point to create something more unique by
+        building on or modifying it.
+    </p>
 
-        <p>Use it as a starting point to create something more unique by
-            building on or modifying it.
-        </p>
-
-    </div>
+</div>
 
 @endsection
