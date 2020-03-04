@@ -13,24 +13,30 @@ class PagesController extends Controller
 
 	public function __construct()
 	{
+		$this->middleware('verified');
 		$this->setImageDefaultsFromConfig('marketingImage');
 	}
 
 	public function index()
 	{
-
-		$featuredImage = MarketingImage::where('is_featured', 1)->where('is_active', 1)->first();
-
-		$activeImages = MarketingImage::where('is_featured', 0)->where('is_active', 1)->get();
-
+		$featuredImage = MarketingImage::where('is_featured', 1)
+		->where('is_active', 1)
+		->first();
+		$activeImages = MarketingImage::where('is_featured', 0)
+		->where('is_active', 1)
+		->orderBy('image_weight', 'asc')
+		->get();
 		$count = count($activeImages);
-		//dd($activeImages);
-		$notEnoughImages = $this->notEnoughSliderImages($featuredImage, $activeImages);
-
+		$notEnoughImages =
+		$this->notEnoughSliderImages($featuredImage, $activeImages);
 		$imagePath = $this->imagePath;
-
-		return view('pages.index', compact('featuredImage', 'activeImages', 'count', 'imagePath', 'notEnoughImages'));
-
+		return view('pages.index', compact(
+			'featuredImage',
+			'activeImages',
+			'count',
+			'imagePath',
+			'notEnoughImages'
+		));
 	}
 
 	public function terms()

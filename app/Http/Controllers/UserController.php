@@ -95,7 +95,7 @@ class UserController extends Controller
 
         User::destroy($id);
 
-        function_alert("You have deleted a user");
+        //function_alert("You have deleted a user");
 
         return Redirect::route('user.index');
     }

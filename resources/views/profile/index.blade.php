@@ -8,6 +8,8 @@
 
 @section('content')
 
+    
+
     <ol class='breadcrumb'>
         <li><a href='/'>Home</a></li>
         <li class='active'>Profiles</li>

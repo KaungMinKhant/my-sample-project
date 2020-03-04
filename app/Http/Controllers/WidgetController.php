@@ -157,7 +157,7 @@ class WidgetController extends Controller
 
     public function __construct()
     {
-        $this->middleware('verified', ['except' => 'index'] );
+        $this->middleware('verified');
         //$this->middleware('admin', ['except' => ['index', 'show']] );
     }
 }

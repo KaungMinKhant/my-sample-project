@@ -19,7 +19,7 @@ class ProfileController extends Controller
     public function __construct()
     {
 
-        $this->middleware('auth');
+        $this->middleware('verified');
         $this->middleware('admin',['only'=> 'index']);
 
     }
@@ -234,7 +234,7 @@ class ProfileController extends Controller
 
         if (Auth::user()->isAdmin()){
 
-            function_alert("You have deleted a profile");
+            //function_alert("You have deleted a profile");
 
             return Redirect::route('profile.index');
         }

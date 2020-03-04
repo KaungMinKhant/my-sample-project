@@ -6,8 +6,8 @@
 
 <!-- Sweet Alert 2 css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-
-<style>
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+<!-- <style>
 
 	.circ{
 		width : 40px;
@@ -102,4 +102,4 @@
 		
 		background-color: white;
 	}
-</style>
+</style> -->
