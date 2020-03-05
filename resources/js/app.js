@@ -15,14 +15,23 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-import TodoItem from './components/todo-item'
- const app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue.js!'
-  },
-  components: {
-    TodoItem
-  }
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//import TodoItem from './components/todo-item'
+
+
+
+Vue.component('todo-item', {
+  template: '<li>This is a todo</li>'
 })
+
+var smt = new Vue({
+	el: '#smt',
+	data: {
+		message: 'You loaded this page on ' + new Date().toLocaleString()
+	}
+});
+
+var x = 2;
+console.log(x);
+
+console.log(smt.message);

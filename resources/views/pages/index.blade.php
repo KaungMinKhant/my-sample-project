@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-<example-component></example-component>
+
 <ol class="breadcrumb">
     <li><a href="#">Home</a></li>
 </ol>
-
+<example-component></example-component>
 @include('pages.slider')
 <br><br>
 <!-- Main jumbotron for a primary marketing message or call to action -->

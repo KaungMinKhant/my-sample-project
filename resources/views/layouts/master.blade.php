@@ -13,18 +13,20 @@
 
 <body role="document">
 
-  <div id="app">
-    @include('layouts.nav')
+ 
+
+  @include('layouts.nav')
+
+ 
+  <div class="container theme-showcase" role="main">
+    
+<div id="smt">
+    @yield('content')
+
+    @include('layouts.bottom')
 
 
-    <div class="container theme-showcase" role="main">
-
-      @yield('content')
-     
-      @include('layouts.bottom')
-
-
-    </div> <!-- /container -->
+  </div> <!-- /container -->
   </div>
   @include('layouts.scripts')
 
