@@ -1,5 +1,3 @@
-# my-sample-project
-
 # Requirements
 
 - Laravel Platform
